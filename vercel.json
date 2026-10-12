@@ -3,7 +3,8 @@
   "buildCommand": "retype build",
   "outputDirectory": ".retype",
   "installCommand": "npm install",
+  "trailingSlash": true,
   "redirects": [
-    { "source": "/", "destination": "/otc", "permanent": false }
+    { "source": "/", "destination": "/otc/", "permanent": false }
   ]
 }
