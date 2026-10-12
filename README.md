@@ -43,5 +43,5 @@ Push to the repo → Vercel builds and deploys. Add the custom domain under
 
 ## Support email
 
-The address in the docs (`support@velaro.network`) is a placeholder — replace it
+The address in the docs (`dev@velaro.network`) is a placeholder — replace it
 in `support.md` and the API pages once confirmed.

@@ -2,5 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "retype build",
   "outputDirectory": ".retype",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "redirects": [
+    { "source": "/", "destination": "/otc", "permanent": false }
+  ]
 }

@@ -1,7 +1,7 @@
 # Velaro OTC API documentation — Retype config
 input: .
-output: .retype
-url: https://docs.velaro.network
+output: .retype/otc
+url: https://docs.velaro.network/otc
 
 favicon: /static/favicon.png
 
