@@ -1,0 +1,42 @@
+# Velaro OTC API documentation — Retype config
+input: .
+output: .retype
+url: https://docs.velaro.network
+
+favicon: /static/favicon.png
+
+branding:
+  title: Velaro OTC API
+  label: Docs
+  logo: /static/logo.png
+  logoDark: /static/logo.png
+  colors:
+    label:
+      light: "#0d9488"
+      dark: "#2dd4bf"
+    link:
+      light: "#0d9488"
+      dark: "#2dd4bf"
+
+# Teal accent to match velaro.network
+# (Retype's generator picks up `favicon`/branding; theme color below)
+templating:
+  enabled: true
+
+links:
+  - text: Velaro
+    link: https://velaro.network
+  - text: Support
+    link: /support/
+
+order:
+  - index.md
+  - overview.md
+  - authentication.md
+  - rate-limits.md
+  - errors.md
+  - api
+  - support.md
+
+footer:
+  copyright: "© Velaro."

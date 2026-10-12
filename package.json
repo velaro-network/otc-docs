@@ -1,0 +1,16 @@
+{
+  "name": "otc-docs-retype",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "retype watch",
+    "build": "retype build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "devDependencies": {
+    "retypeapp": "^4.6.0"
+  }
+}
