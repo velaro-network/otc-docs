@@ -16,7 +16,7 @@ funds. Prices are indicative and may change before settlement.
 ## Base URL
 
 ```
-https://otc.velaro.network
+https://otc-api.velaro.network
 ```
 
 ## Supported pairs
@@ -33,7 +33,7 @@ https://otc.velaro.network
 Request a quote to buy 100 USDT with BRL:
 
 ```bash
-curl -X POST https://otc.velaro.network/v1/quote \
+curl -X POST https://otc-api.velaro.network/v1/quote \
   -H "Authorization: Bearer vk_live_your_key" \
   -H "Content-Type: application/json" \
   -d '{"asset":"USDT","fiat":"BRL","side":"BUY","amount":"100"}'

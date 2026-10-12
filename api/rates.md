@@ -18,7 +18,7 @@ fiat per asset.
 ## Example
 
 ```bash
-curl https://otc.velaro.network/v1/rates \
+curl https://otc-api.velaro.network/v1/rates \
   -H "Authorization: Bearer vk_live_your_key"
 ```
 

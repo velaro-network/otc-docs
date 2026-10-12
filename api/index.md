@@ -6,7 +6,7 @@ order: 50
 
 # API Reference
 
-Base URL: `https://otc.velaro.network`
+Base URL: `https://otc-api.velaro.network`
 
 All endpoints require authentication — send your key as `Authorization: Bearer vk_live_…`
 (see [Authentication](../authentication.md)).

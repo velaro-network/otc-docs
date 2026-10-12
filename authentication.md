@@ -19,14 +19,14 @@ look like `vk_live_…` and are shown to you **once** — store them securely.
 Send the key as a Bearer token:
 
 ```bash
-curl https://otc.velaro.network/v1/rates \
+curl https://otc-api.velaro.network/v1/rates \
   -H "Authorization: Bearer vk_live_your_key"
 ```
 
 The `X-API-Key` header is also accepted:
 
 ```bash
-curl https://otc.velaro.network/v1/rates \
+curl https://otc-api.velaro.network/v1/rates \
   -H "X-API-Key: vk_live_your_key"
 ```
 

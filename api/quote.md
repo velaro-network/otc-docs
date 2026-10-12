@@ -32,7 +32,7 @@ is `amount × price` in the fiat currency.
 ## Example
 
 ```bash
-curl -X POST https://otc.velaro.network/v1/quote \
+curl -X POST https://otc-api.velaro.network/v1/quote \
   -H "Authorization: Bearer vk_live_your_key" \
   -H "Content-Type: application/json" \
   -d '{"asset":"USDT","fiat":"BRL","side":"BUY","amount":"100"}'
