@@ -47,7 +47,7 @@ curl -X POST https://otc-api.velaro.network/v1/quote \
   "amount": "100",
   "price": "5.057342",
   "total": "505.7342",
-  "quoted_at": "2026-10-08T12:00:00Z"
+  "quoted_at": "2026-10-08T09:00:00-03:00"
 }
 ```
 
