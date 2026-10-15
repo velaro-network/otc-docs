@@ -31,7 +31,7 @@ curl https://otc-api.velaro.network/v1/rates \
 | `rates[].fiat`   | string | Fiat currency |
 | `rates[].buy`    | string | Best price to buy the asset (fiat per asset) |
 | `rates[].sell`   | string | Best price to sell the asset (fiat per asset) |
-| `as_of`          | string | Timestamp of the rates (UTC, RFC 3339) |
+| `as_of`          | string | Timestamp of the rates (Brazil time, BRT = UTC-3, RFC 3339) |
 
 ```json
 {
@@ -39,7 +39,7 @@ curl https://otc-api.velaro.network/v1/rates \
     { "asset": "USDT", "fiat": "BRL", "buy": "5.057342", "sell": "5.0012" },
     { "asset": "USDC", "fiat": "BRL", "buy": "5.061", "sell": "5.0039" }
   ],
-  "as_of": "2026-10-08T12:00:00Z"
+  "as_of": "2026-10-08T09:00:00-03:00"
 }
 ```
 
