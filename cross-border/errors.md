@@ -57,7 +57,7 @@ documented on the endpoint that returns them.
 | `401` | `invalid_api_key` | Key unknown or revoked |
 | `403` | `scope_forbidden` | Key not issued for this API |
 | `429` | `rate_limited` | Too many requests for the key |
-| `404` / `405` | `request_rejected` | No such route, or wrong HTTP method |
+| `401` | `unauthenticated` | A path or HTTP method that is not documented here, even with a valid key. Check the method and path against the [API reference](api/index.md) |
 
 ## Codes by endpoint
 
