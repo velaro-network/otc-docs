@@ -1,14 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "retype build && retype build cross-border",
+  "buildCommand": "retype build && retype build cross-border && cp landing/index.html .retype/index.html",
   "outputDirectory": ".retype",
   "installCommand": "npm install",
-  "trailingSlash": true,
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/otc/",
-      "permanent": false
-    }
-  ]
+  "trailingSlash": true
 }

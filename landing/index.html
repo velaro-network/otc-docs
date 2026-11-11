@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velaro API Docs</title>
+<link rel="icon" href="/otc/static/favicon.png">
+<style>
+  :root { --fg:#0f172a; --muted:#475569; --bg:#ffffff; --card:#f8fafc; --line:#e2e8f0; --accent:#0d9488; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#e2e8f0; --muted:#94a3b8; --bg:#0b1120; --card:#111827; --line:#1f2937; --accent:#2dd4bf; } }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width:720px; margin:0 auto; padding:64px 16px; }
+  h1 { font-size:28px; margin:0 0 8px; }
+  p.lead { color:var(--muted); margin:0 0 32px; }
+  .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+  a.card { display:block; padding:20px; border:1px solid var(--line); border-radius:12px; background:var(--card); color:inherit; text-decoration:none; }
+  a.card:hover { border-color:var(--accent); }
+  a.card h2 { margin:0 0 6px; font-size:18px; color:var(--accent); }
+  a.card p { margin:0; color:var(--muted); font-size:14px; line-height:1.5; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Velaro API Docs</h1>
+  <p class="lead">Choose the API you are integrating with.</p>
+  <div class="grid">
+    <a class="card" href="/otc/"><h2>OTC API</h2><p>Competitive quotes and best rates for stablecoin ⇄ BRL.</p></a>
+    <a class="card" href="/cross-border/"><h2>Cross-Border API</h2><p>Pay counterparties abroad: onboarding, payees, quotes, orders and webhooks.</p></a>
+  </div>
+</main>
+</body>
+</html>

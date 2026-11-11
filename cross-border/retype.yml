@@ -24,6 +24,12 @@ templating:
   enabled: true
 
 links:
+  - text: OTC API
+    link: https://docs.velaro.network/otc/
+    icon: arrow-switch
+  - text: Cross-Border API
+    link: https://docs.velaro.network/cross-border/
+    icon: arrow-switch
   - text: Velaro
     link: https://velaro.network
   - text: Support
@@ -31,6 +37,7 @@ links:
 
 order:
   - index.md
+  - switch-to-otc.md
   - overview.md
   - authentication.md
   - limits.md
