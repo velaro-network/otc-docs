@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "retype watch",
-    "build": "retype build"
+    "build": "retype build && retype build cross-border && cp landing/index.html .retype/index.html"
   },
   "keywords": [],
   "author": "",
