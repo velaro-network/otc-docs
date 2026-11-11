@@ -8,7 +8,7 @@ order: 48
 
 :::code-tab POST
 ```
-POST /api/v1/cross-border/heyship/customers
+POST /api/v1/cross-border/partner/customers
 ```
 :::
 
@@ -78,7 +78,7 @@ all submissions.
 ## Example
 
 ```bash
-curl -X POST https://staging-payment.velaro.network/api/v1/cross-border/heyship/customers \
+curl -X POST https://staging-payment.velaro.network/api/v1/cross-border/partner/customers \
   -H "X-API-Key: vcb_your_key" \
   -H "Content-Type: application/json" \
   -d @customer.json

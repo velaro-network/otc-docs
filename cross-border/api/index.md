@@ -6,7 +6,7 @@ order: 50
 
 # API Reference
 
-Base URL: `https://staging-payment.velaro.network/api/v1/cross-border/heyship`
+Base URL: `https://staging-payment.velaro.network/api/v1/cross-border/partner`
 (Sandbox — see [Overview](../overview.md#environments)).
 
 All endpoints require authentication — send your key as `X-API-Key: vcb_…`
