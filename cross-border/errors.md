@@ -67,7 +67,7 @@ documented on the endpoint that returns them.
 | | `404` | `not_found` (payer) |
 | | `503` | `quote_unavailable` |
 | | `500` | `internal_error` |
-| [`POST /quotes`](api/create-quote.md) | `400` | `invalid_request`, `unsupported_payout_currency`, `amount_over_limit` |
+| [`POST /quotes`](api/create-quote.md) | `400` | `bad_request`, `invalid_request`, `unsupported_payout_currency`, `amount_over_limit` |
 | | `404` | `not_found` (payer) |
 | | `413` | `payload_too_large` |
 | | `422` | `payer_limit_exceeded` |
