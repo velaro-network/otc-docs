@@ -6,15 +6,14 @@ order: 70
 
 # Rate limits
 
-Each API key may make **one request every 5 seconds**. Prices move slowly, so a
-single fresh quote every few seconds is enough for most integrations.
+Each API key may make **up to two requests per second**.
 
-Exceeding the limit returns **`429 Too Many Requests`** with a `Retry-After: 5`
+Exceeding the limit returns **`429 Too Many Requests`** with a `Retry-After: 1`
 header:
 
 ```json
-{ "error": "rate limit exceeded, retry in 5s" }
+{ "error": "rate limit exceeded, retry in 1s" }
 ```
 
-Back off and retry after the interval. If you need a higher limit, contact your
+Back off and retry after a second. If you need a higher limit, contact your
 account manager.
