@@ -10,7 +10,7 @@ The **Velaro Cross-Border API** moves a payment from a Brazilian business
 (the **payer**, your customer) to its counterparty abroad (the **payee**).
 The payer pays BRL by Pix; the payee receives the quoted amount in USD.
 
-Every endpoint sits under one base path, `/api/v1/cross-border/heyship`, and
+Every endpoint sits under one base path, `/api/v1/cross-border/partner`, and
 uses one API key (see [Authentication](authentication.md)).
 
 ## Environments
@@ -19,11 +19,11 @@ uses one API key (see [Authentication](authentication.md)).
 | ----------- | -------- |
 | Sandbox (staging) | `https://staging-payment.velaro.network` |
 
-Full endpoint URL = base URL + `/api/v1/cross-border/heyship` + path, for
+Full endpoint URL = base URL + `/api/v1/cross-border/partner` + path, for
 example:
 
 ```
-https://staging-payment.velaro.network/api/v1/cross-border/heyship/rates
+https://staging-payment.velaro.network/api/v1/cross-border/partner/rates
 ```
 
 ## End-to-end flow

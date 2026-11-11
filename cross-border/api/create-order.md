@@ -8,7 +8,7 @@ order: 42
 
 :::code-tab POST
 ```
-POST /api/v1/cross-border/heyship/orders
+POST /api/v1/cross-border/partner/orders
 ```
 :::
 
@@ -27,19 +27,19 @@ A firm quote backs at most one order.
 | `payee_id`            | string | yes | A payee created with your key |
 | `payment_reason`      | string | yes | One of the payment reasons below |
 | `payment_description` | string | yes | 1–500 characters, e.g. the invoice number |
-| `brl_all`             | string | yes | Total BRL the payer pays: the quote's `brl_to_pay` plus `heyship_markup`. Decimal string, `> 0` |
-| `heyship_markup`      | string | no  | Your markup in BRL, `≥ 0` and `≤ brl_all`. Omitted means `0` |
+| `brl_all`             | string | yes | Total BRL the payer pays: the quote's `brl_to_pay` plus `markup`. Decimal string, `> 0` |
+| `markup`      | string | no  | Your markup in BRL, `≥ 0` and `≤ brl_all`. Omitted means `0` |
 | `document`            | object | see below | The transaction document (invoice, contract, …). **Required unless the payee's `relationship` is `self`** |
 | `document.filename`       | string | yes | File name, 1–255 characters |
 | `document.content_type`   | string | no  | Ignored: the type is detected from the file's bytes |
 | `document.content_base64` | string | yes | File content, standard base64. PDF, JPEG or PNG, at most 10,000,000 bytes decoded |
 
-**Amount format.** `brl_all` and `heyship_markup` must be plain decimals:
+**Amount format.** `brl_all` and `markup` must be plain decimals:
 digits with an optional fractional part — no sign, exponent, leading zero
 (except `0` itself, e.g. `0.50`) or spaces, at most 32 characters. `5603.39`
 is valid; `+5603.39`, `5.60339e3` and `05603.39` are not.
 
-**Price check.** `brl_all − heyship_markup` must equal the quote's `brl_to_pay`
+**Price check.** `brl_all − markup` must equal the quote's `brl_to_pay`
 exactly; otherwise `400 invalid_request`.
 
 `payment_reason` values: `personal`, `investment`, `real_estate`, `tax`,
@@ -55,7 +55,7 @@ exactly; otherwise `400 invalid_request`.
   "payment_reason": "import_export",
   "payment_description": "INV-0001",
   "brl_all": "5603.39",
-  "heyship_markup": "30.00",
+  "markup": "30.00",
   "document": {
     "filename": "invoice-0001.pdf",
     "content_type": "application/pdf",
@@ -67,7 +67,7 @@ exactly; otherwise `400 invalid_request`.
 ## Example
 
 ```bash
-curl -X POST https://staging-payment.velaro.network/api/v1/cross-border/heyship/orders \
+curl -X POST https://staging-payment.velaro.network/api/v1/cross-border/partner/orders \
   -H "X-API-Key: vcb_your_key" \
   -H "Content-Type: application/json" \
   -d @order.json
@@ -119,7 +119,7 @@ Follow the order with [Order status](order-status.md) or the
 There is no idempotency key; the **`quote_id`** plays that role. Sending a
 request again with a `quote_id` that already backs one of your orders:
 
-- with the same `payee_id`, `brl_all`, `heyship_markup`, `payment_reason`
+- with the same `payee_id`, `brl_all`, `markup`, `payment_reason`
   and `payment_description` (compared as exact strings — `"30.00"` and `"30"`
   differ) returns the **existing** order with `200` and its current status.
   The `document` is not compared and need not be sent again. Expiry of the
@@ -136,7 +136,7 @@ readiness, body fields and document format, payer limits, document upload, payme
 | Status | `code` | When |
 | ------ | ------ | ---- |
 | `400` | `bad_request` | Body is not valid JSON or a field has the wrong JSON type |
-| `400` | `invalid_request` | A field fails its rule: `brl_all` missing or malformed, `heyship_markup` negative, malformed or above `brl_all`, `brl_all − heyship_markup` ≠ the quote's `brl_to_pay`, unknown `payment_reason`, `payment_description` empty or over 500 characters, `document` missing for a non-`self` payee, document not valid base64, over 10 MB, not PDF/JPEG/PNG, or with a missing/too-long filename |
+| `400` | `invalid_request` | A field fails its rule: `brl_all` missing or malformed, `markup` negative, malformed or above `brl_all`, `brl_all − markup` ≠ the quote's `brl_to_pay`, unknown `payment_reason`, `payment_description` empty or over 500 characters, `document` missing for a non-`self` payee, document not valid base64, over 10 MB, not PDF/JPEG/PNG, or with a missing/too-long filename |
 | `400` | `amount_over_limit` | The quote's amount is no longer below the per-order cap |
 | `404` | `not_found` | Quote, payee or payer unknown or created with another key (the `detail` says which) |
 | `409` | `quote_already_used` | The quote already backs an order with different fields (see [Retries](#retries)) |

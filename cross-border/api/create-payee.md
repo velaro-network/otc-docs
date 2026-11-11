@@ -8,7 +8,7 @@ order: 46
 
 :::code-tab POST
 ```
-POST /api/v1/cross-border/heyship/payees
+POST /api/v1/cross-border/partner/payees
 ```
 :::
 
@@ -62,7 +62,7 @@ orders to any other payee require a transaction document
 ## Example
 
 ```bash
-curl -X POST https://staging-payment.velaro.network/api/v1/cross-border/heyship/payees \
+curl -X POST https://staging-payment.velaro.network/api/v1/cross-border/partner/payees \
   -H "X-API-Key: vcb_your_key" \
   -H "Content-Type: application/json" \
   -d '{"payer_id":"payer_8b1e4f2a9c3d4e5f6a7b8c9d0e1f2a3b","relationship":"supplier","bank_name":"Example Bank","account_holder_name":"Acme Trading Ltd","account_number":"123456789012","bic":"EXAMUS33","address_line1":"100 Main Street","city":"New York","country":"USA"}'

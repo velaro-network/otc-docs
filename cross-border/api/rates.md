@@ -8,7 +8,7 @@ order: 45
 
 :::code-tab GET
 ```
-GET /api/v1/cross-border/heyship/rates
+GET /api/v1/cross-border/partner/rates
 ```
 :::
 
@@ -29,7 +29,7 @@ from a later firm quote. No KYB is needed — use it for pre-calculation.
 ## Example
 
 ```bash
-curl "https://staging-payment.velaro.network/api/v1/cross-border/heyship/rates?payout_amount=1000&payout_currency=USD" \
+curl "https://staging-payment.velaro.network/api/v1/cross-border/partner/rates?payout_amount=1000&payout_currency=USD" \
   -H "X-API-Key: vcb_your_key"
 ```
 
