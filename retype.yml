@@ -1,6 +1,8 @@
 # Velaro OTC API documentation — Retype config
 input: .
 output: .retype/otc
+exclude:
+  - cross-border/
 url: https://docs.velaro.network/otc
 
 favicon: /static/favicon.png
