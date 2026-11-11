@@ -71,7 +71,8 @@ Every call creates a new quote. The response carries `Cache-Control: no-store`.
 
 | Status | `code` | When |
 | ------ | ------ | ---- |
-| `400` | `invalid_request` | Body is not valid JSON or a field has the wrong JSON type; or `payout_amount` missing, not a decimal, `≤ 0`, more than 2 decimal places, or longer than 32 characters |
+| `400` | `bad_request` | Body is not valid JSON, or a field has the wrong JSON type |
+| `400` | `invalid_request` | `payout_amount` missing, not a decimal, `≤ 0`, more than 2 decimal places, or longer than 32 characters |
 | `400` | `unsupported_payout_currency` | `payout_currency` missing, not upper case, or not supported (checked before the amount) |
 | `400` | `amount_over_limit` | `payout_amount` is `100000` or more |
 | `404` | `not_found` | `payer_id` unknown or created with another key |
