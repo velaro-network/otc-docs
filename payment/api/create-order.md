@@ -8,7 +8,7 @@ order: 42
 
 :::code-tab POST
 ```
-POST /api/v1/cross-border/partner/orders
+POST /api/v1/orders
 ```
 :::
 
@@ -70,7 +70,7 @@ exactly; otherwise `400 invalid_request`.
 ## Example
 
 ```bash
-curl -X POST https://staging-payment.velaro.network/api/v1/cross-border/partner/orders \
+curl -X POST https://staging.payment.velaro.network/api/v1/orders \
   -H "X-API-Key: vcb_your_key" \
   -H "Content-Type: application/json" \
   -d @order.json

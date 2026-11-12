@@ -8,7 +8,7 @@ order: 41
 
 :::code-tab GET
 ```
-GET /api/v1/cross-border/partner/orders/{id}/status
+GET /api/v1/orders/{id}/status
 ```
 :::
 
@@ -29,7 +29,7 @@ final. See [Overview](../overview.md#order-statuses) for every status.
 ## Example
 
 ```bash
-curl https://staging-payment.velaro.network/api/v1/cross-border/partner/orders/order_9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d/status \
+curl https://staging.payment.velaro.network/api/v1/orders/order_9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d/status \
   -H "X-API-Key: vcb_your_key"
 ```
 

@@ -19,14 +19,14 @@ look like `vcb_…` and are shown to you **once** — store them securely.
 Send the key in the `X-API-Key` header:
 
 ```bash
-curl "https://staging-payment.velaro.network/api/v1/cross-border/partner/rates?payout_amount=1000&payout_currency=USD" \
+curl "https://staging.payment.velaro.network/api/v1/rates?payout_amount=1000&payout_currency=USD" \
   -H "X-API-Key: vcb_your_key"
 ```
 
 A Bearer token is also accepted:
 
 ```bash
-curl "https://staging-payment.velaro.network/api/v1/cross-border/partner/rates?payout_amount=1000&payout_currency=USD" \
+curl "https://staging.payment.velaro.network/api/v1/rates?payout_amount=1000&payout_currency=USD" \
   -H "Authorization: Bearer vcb_your_key"
 ```
 

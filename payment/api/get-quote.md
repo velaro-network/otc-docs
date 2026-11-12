@@ -8,7 +8,7 @@ order: 43
 
 :::code-tab GET
 ```
-GET /api/v1/cross-border/partner/quotes/{id}
+GET /api/v1/quotes/{id}
 ```
 :::
 
@@ -23,7 +23,7 @@ Returns a firm quote created with your key, while it is still valid.
 ## Example
 
 ```bash
-curl https://staging-payment.velaro.network/api/v1/cross-border/partner/quotes/q_3f9c2b7e8a1d4c6f9e0b1a2c3d4e5f60 \
+curl https://staging.payment.velaro.network/api/v1/quotes/q_3f9c2b7e8a1d4c6f9e0b1a2c3d4e5f60 \
   -H "X-API-Key: vcb_your_key"
 ```
 
