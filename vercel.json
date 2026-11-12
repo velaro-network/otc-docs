@@ -20,17 +20,5 @@
       "source": "/:path((?!otc/|payment/).+\\.md)",
       "destination": "/otc/:path"
     }
-  ],
-  "redirects": [
-    {
-      "source": "/cross-border",
-      "destination": "/payment/",
-      "permanent": true
-    },
-    {
-      "source": "/cross-border/:path*",
-      "destination": "/payment/:path*",
-      "permanent": true
-    }
   ]
 }
