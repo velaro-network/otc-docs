@@ -4,7 +4,7 @@ icon: home
 order: 100
 ---
 
-# Velaro Cross-Border API
+# Velaro Payment API
 
 Pay foreign suppliers from Brazil: the customer pays **BRL by Pix**, the payee
 receives **USD** in their bank account abroad.
