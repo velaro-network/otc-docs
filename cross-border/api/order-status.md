@@ -40,13 +40,12 @@ curl https://staging-payment.velaro.network/api/v1/cross-border/partner/orders/o
 | `order_id` | string | Order id |
 | `status`   | string | `quoted`, `awaiting_pix`, `paid`, `converted`, `settled`, `failed` or `pix_expired` |
 | `reason`   | string | Only with `failed`: `refund_pending` (the payment will be refunded to the payer) |
-| `uetr`     | string | Only with `settled`, when available: the SWIFT tracking reference (UETR) of the payout |
+| `uetr`     | string \| null | Reserved for the SWIFT tracking reference (UETR) of the payout. Not provided yet: currently left out of the response; treat it as optional (absent or `null`) |
 
 ```json
 {
   "order_id": "order_9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d",
-  "status": "settled",
-  "uetr": "8a562c67-ca16-48ba-b074-65581be6f011"
+  "status": "settled"
 }
 ```
 

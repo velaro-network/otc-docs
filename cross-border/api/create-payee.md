@@ -16,9 +16,14 @@ Registers a **payee** — the party abroad that a payer pays — with the bank
 account it receives USD in. A payee belongs to one payer and is reused for
 all of that payer's orders: create it once, not once per order.
 
-The bank account is then registered for payouts. An order can only be created
-once that registration is done (`sphere_status` = `registered`); it happens
-automatically once the payer is approved.
+Depending on how Velaro pays out for the payer, the bank account is either
+registered for payouts up front — automatically, once the payer is approved —
+or only when the order is paid out. In the first case an order can only be
+created once `registration_status` is `registered`; in the second,
+`registration_status` stays `pending` and does not block orders. You cannot
+tell the two apart from this response, so do not wait on the field: once the
+payer is approved, create the order, and if it answers `422`
+`payee_not_registered`, try again later.
 
 This call is **not idempotent**: each successful call creates a new payee.
 
@@ -78,8 +83,8 @@ The full account number is never returned.
 | `payer_id`      | string | The payer |
 | `relationship`  | string | Echoed relationship |
 | `account_last4` | string | Last 4 characters of the account number |
-| `sphere_status` | string | Registration of the bank account for payouts: `pending` (not registered yet — normal until the payer is approved), `registering` (in progress), `registered` (ready for orders), `rejected` (the account details were refused — see `sphere_error`), `needs_review` (Velaro is checking it) |
-| `sphere_error`  | string | Present only when registration failed: the reason given |
+| `registration_status` | string | Registration of the bank account for payouts: `pending` (not registered yet — normal until the payer is approved, and permanent when the account is registered at payout time), `registering` (in progress), `registered` (ready for orders), `rejected` (the account details were refused — see `registration_error`), `needs_review` (Velaro is checking it) |
+| `registration_error`  | string | Present only when a registration attempt failed: a short description of the problem |
 
 ```json
 {
@@ -87,7 +92,7 @@ The full account number is never returned.
   "payer_id": "payer_8b1e4f2a9c3d4e5f6a7b8c9d0e1f2a3b",
   "relationship": "supplier",
   "account_last4": "9012",
-  "sphere_status": "pending"
+  "registration_status": "pending"
 }
 ```
 

@@ -14,8 +14,11 @@ POST /api/v1/cross-border/partner/orders
 
 Creates a payment order from a [firm quote](create-quote.md) and a
 [payee](create-payee.md). The payee's payer must be **approved**
-([Customer status](customer-status.md)) and the payee's bank account
-**registered** (`sphere_status` = `registered`).
+([Customer status](customer-status.md)). When the payer's payouts need the
+payee's bank account registered up front, it must also be **registered**
+(`registration_status` = `registered`); otherwise it is registered at payout
+time and a `pending` status does not block the order (see
+[Create a payee](create-payee.md)).
 
 A firm quote backs at most one order.
 
@@ -143,11 +146,11 @@ readiness, body fields and document format, payer limits, document upload, payme
 | `410` | `quote_expired` | The quote's `expires_at` has passed — create a new quote |
 | `413` | `payload_too_large` | Body over 16,000,000 bytes |
 | `422` | `payer_not_approved` | The payer's KYB is not approved |
-| `422` | `payee_not_registered` | The payee's bank account is not registered for payouts yet (`sphere_status` not `registered`) |
+| `422` | `payee_not_registered` | The payee's bank account must be registered before this order and is not yet (`registration_status` not `registered`); try again later |
 | `422` | `payout_provider_not_supported` | Payouts for this payer cannot be made in this environment — contact support |
 | `422` | `unsupported_payout_currency` | The quote's payout currency cannot be paid out for this payer |
 | `422` | `payer_limit_exceeded` | Over the payer's per-order or monthly limit. Same extra members as on [Create a firm quote](create-quote.md#payer_limit_exceeded) |
-| `422` | `transaction_document_rejected` | The transaction document was refused. Carries `sphere_status` (number, the HTTP status of the refusal) and `sphere_reason` (string, the reason given, may be empty). Fix the document and send the request again |
+| `422` | `transaction_document_rejected` | The transaction document was refused. Carries `provider_status` (number, the HTTP status of the refusal) and `provider_reason` (string, the reason given, may be empty). Fix the document and send the request again |
 | `422` | `order_not_accepted` | The order could not be accepted at this time |
 | `503` | `otc_unavailable` | The Pix payment could not be set up — temporary. Nothing was created; send the same request again |
 | `500` | `order_lookup_failed`, `quote_lookup_failed`, `payee_lookup_failed`, `payer_lookup_failed`, `create_order_failed` | Unexpected failure |
