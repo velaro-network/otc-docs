@@ -32,11 +32,17 @@ for an approved payer.
 | `documents[].category`       | string | yes | One of the categories below |
 | `documents[].filename`       | string | yes | File name, 1–255 characters |
 | `documents[].content_type`   | string | no  | Ignored: the type is detected from the file's bytes |
-| `documents[].content_base64` | string | yes | File content, standard base64. PDF, JPEG or PNG, at most 10,000,000 bytes decoded |
+| `documents[].content_base64` | string | yes | File content, standard base64. PDF, JPEG, PNG, DOC or DOCX, at most 50,000,000 bytes (50 MB) decoded. DOC and DOCX are re-rendered to PDF |
 
-All documents of one submission together: at most 83,886,080 bytes (80 MiB)
+All documents of one submission together: at most 250,000,000 bytes (250 MB)
 decoded. No text field may contain a NUL (`\u0000`) character. See
 [Limits](../limits.md) for every size rule.
+
+!!!warning Availability
+The 50 MB per-document limit and the DOC and DOCX formats take effect only
+where document conversion is enabled. Until then, a document is at most
+10 MB decoded and must be PDF, JPEG or PNG.
+!!!
 
 ### Document categories
 
@@ -107,10 +113,10 @@ Returned for a new payer and for a resubmission.
 | Status | `code` | When |
 | ------ | ------ | ---- |
 | `400` | `bad_request` | Body is not JSON, `Content-Type` is not `application/json`, or a field has the wrong JSON type |
-| `400` | `invalid_request` | A field fails its rule: `legal_name`/`cnpj` missing, invalid CNPJ, no documents, more than 40 documents, unknown category, missing or too-long filename, a document over 10 MB or not PDF/JPEG/PNG, invalid base64, submission over 80 MiB, `profile` not an object or over 64 KiB, a field over its size limit, a NUL character, or more than 1,000 documents for the payer |
+| `400` | `invalid_request` | A field fails its rule: `legal_name`/`cnpj` missing, invalid CNPJ, no documents, more than 40 documents, unknown category, missing or too-long filename, a document over 50 MB or not PDF/JPEG/PNG/DOC/DOCX, invalid base64, submission over 250 MB, `profile` not an object or over 64 KiB, a field over its size limit, a NUL character, or more than 1,000 documents for the payer |
 | `404` | `not_found` | Resubmission: `id` unknown or created with another key |
 | `409` | `conflict` | A payer with this CNPJ already exists; or a resubmission that is not accepted (payer not in `more_docs_needed`, or rejected); or a concurrent update — retry |
-| `413` | `payload_too_large` | Body over 120,000,000 bytes |
+| `413` | `payload_too_large` | Body over 340,000,000 bytes |
 | `503` | `service_busy` | Too many uploads in progress — retry after the `Retry-After` interval (see [Limits](../limits.md#kyb-uploads-in-progress)) |
 | `500` | `create_customer_failed` | Unexpected failure |
 

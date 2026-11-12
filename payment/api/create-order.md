@@ -35,7 +35,7 @@ A firm quote backs at most one order.
 | `document`            | object | see below | The transaction document (invoice, contract, …). **Required unless the payee's `relationship` is `self`** |
 | `document.filename`       | string | yes | File name, 1–255 characters |
 | `document.content_type`   | string | no  | Ignored: the type is detected from the file's bytes |
-| `document.content_base64` | string | yes | File content, standard base64. PDF, JPEG or PNG, at most 10,000,000 bytes decoded |
+| `document.content_base64` | string | yes | File content, standard base64. PDF, JPEG, PNG, DOC or DOCX, at most 50,000,000 bytes (50 MB) decoded. DOC and DOCX are re-rendered to PDF |
 
 **Amount format.** `brl_all` and `markup` must be plain decimals:
 digits with an optional fractional part — no sign, exponent, leading zero
@@ -44,6 +44,12 @@ is valid; `+5603.39`, `5.60339e3` and `05603.39` are not.
 
 **Price check.** `brl_all − markup` must equal the quote's `brl_to_pay`
 exactly; otherwise `400 invalid_request`.
+
+!!!warning Availability
+The 50 MB per-document limit and the DOC and DOCX formats take effect only
+where document conversion is enabled. Until then, a document is at most
+10 MB decoded and must be PDF, JPEG or PNG.
+!!!
 
 `payment_reason` values: `personal`, `investment`, `real_estate`, `tax`,
 `loan`, `bills`, `reimbursement`, `professional_services`, `family_support`,
@@ -139,12 +145,12 @@ readiness, body fields and document format, payer limits, document upload, payme
 | Status | `code` | When |
 | ------ | ------ | ---- |
 | `400` | `bad_request` | Body is not valid JSON or a field has the wrong JSON type |
-| `400` | `invalid_request` | A field fails its rule: `brl_all` missing or malformed, `markup` negative, malformed or above `brl_all`, `brl_all − markup` ≠ the quote's `brl_to_pay`, unknown `payment_reason`, `payment_description` empty or over 500 characters, `document` missing for a non-`self` payee, document not valid base64, over 10 MB, not PDF/JPEG/PNG, or with a missing/too-long filename |
+| `400` | `invalid_request` | A field fails its rule: `brl_all` missing or malformed, `markup` negative, malformed or above `brl_all`, `brl_all − markup` ≠ the quote's `brl_to_pay`, unknown `payment_reason`, `payment_description` empty or over 500 characters, `document` missing for a non-`self` payee, document not valid base64, over 50 MB, not PDF/JPEG/PNG/DOC/DOCX, or with a missing/too-long filename |
 | `400` | `amount_over_limit` | The quote's amount is no longer below the per-order cap |
 | `404` | `not_found` | Quote, payee or payer unknown or created with another key (the `detail` says which) |
 | `409` | `quote_already_used` | The quote already backs an order with different fields (see [Retries](#retries)) |
 | `410` | `quote_expired` | The quote's `expires_at` has passed — create a new quote |
-| `413` | `payload_too_large` | Body over 16,000,000 bytes |
+| `413` | `payload_too_large` | Body over 70,000,000 bytes |
 | `422` | `payer_not_approved` | The payer's KYB is not approved |
 | `422` | `payee_not_registered` | The payee's bank account must be registered before this order and is not yet (`registration_status` not `registered`); try again later |
 | `422` | `payout_provider_not_supported` | Payouts for this payer cannot be made in this environment — contact support |

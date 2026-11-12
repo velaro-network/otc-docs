@@ -22,8 +22,8 @@ higher limit, contact your account manager.
 
 | Endpoint | Max body |
 | -------- | -------- |
-| `POST /customers` | 120,000,000 bytes |
-| `POST /orders` | 16,000,000 bytes |
+| `POST /customers` | 340,000,000 bytes |
+| `POST /orders` | 70,000,000 bytes |
 | `POST /quotes`, `POST /payees` | 64,000 bytes |
 
 A larger body is refused with **`413 payload_too_large`** before it is
@@ -36,13 +36,23 @@ JSON body, base64-encoded (standard alphabet, with padding).
 
 | Rule | Limit |
 | ---- | ----- |
-| Size of one document (decoded) | 10,000,000 bytes (10 MB) |
-| File type | PDF, JPEG or PNG — detected from the file's bytes, not from the filename or `content_type` |
+| Size of one document (decoded) | 50,000,000 bytes (50 MB) |
+| File type | PDF, JPEG, PNG, DOC or DOCX — detected from the file's bytes, not from the filename or `content_type`. DOC and DOCX are re-rendered to PDF (the stored filename becomes `.pdf`) |
 | Filename | 1–255 characters (path components are stripped) |
 | Documents per KYB submission | 40 |
-| Total size of one KYB submission (decoded) | 83,886,080 bytes (80 MiB) |
+| Total size of one KYB submission (decoded) | 250,000,000 bytes (250 MB) |
 | Documents per payer, all submissions together | 1,000 |
 | KYB `profile` object | 65,536 bytes (64 KiB) as JSON |
+
+Each document is at most **50 MB decoded**, and the documents of one request
+are also capped **together** — a KYB submission at **250 MB decoded** (340 MB
+as the base64 request body).
+
+!!!warning Availability
+The 50 MB per-document limit and the DOC and DOCX formats take effect only
+where document conversion is enabled. Until then, a document is at most
+10 MB decoded and must be PDF, JPEG or PNG.
+!!!
 
 ## KYB uploads in progress
 
