@@ -22,5 +22,6 @@ All endpoints require authentication — send your key as `X-API-Key: vcb_…`
 | `GET`  | [`/quotes/{id}`](get-quote.md) | Look up a firm quote |
 | `POST` | [`/orders`](create-order.md) | Create a payment order from a firm quote |
 | `GET`  | [`/orders/{id}/status`](order-status.md) | An order's status |
+| `POST` | [`/orders/{id}/cancel`](cancel-order.md) | Cancel an order before payment |
 
 Amounts are **decimal strings**; times are RFC 3339 in UTC.
