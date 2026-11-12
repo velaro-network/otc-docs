@@ -6,7 +6,7 @@ order: 90
 
 # Overview
 
-The **Velaro Cross-Border API** moves a payment from a Brazilian business
+The **Velaro Payment API** moves a payment from a Brazilian business
 (the **payer**, your customer) to its counterparty abroad (the **payee**).
 The payer pays BRL by Pix; the payee receives the quoted amount in USD.
 

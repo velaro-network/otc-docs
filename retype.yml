@@ -2,7 +2,7 @@
 input: .
 output: .retype/otc
 exclude:
-  - cross-border/
+  - payment/
   - landing/
 url: https://docs.velaro.network/otc
 
@@ -27,12 +27,6 @@ templating:
   enabled: true
 
 links:
-  - text: OTC API
-    link: https://docs.velaro.network/otc/
-    icon: arrow-switch
-  - text: Cross-Border API
-    link: https://docs.velaro.network/cross-border/
-    icon: arrow-switch
   - text: Velaro
     link: https://velaro.network
   - text: Support
@@ -40,7 +34,6 @@ links:
 
 order:
   - index.md
-  - switch-to-cross-border.md
   - overview.md
   - authentication.md
   - rate-limits.md

@@ -1,24 +1,36 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "retype build && retype build cross-border && cp landing/index.html .retype/index.html",
+  "buildCommand": "retype build && retype build payment && cp landing/index.html .retype/index.html",
   "outputDirectory": ".retype",
   "installCommand": "npm install",
   "trailingSlash": true,
   "rewrites": [
     {
-      "source": "/:path((?!otc/|cross-border/).+\\.md)",
+      "source": "/:path((?!otc/|payment/).+\\.md)",
       "has": [
         {
           "type": "header",
           "key": "referer",
-          "value": ".*/cross-border/.*"
+          "value": ".*/payment/.*"
         }
       ],
-      "destination": "/cross-border/:path"
+      "destination": "/payment/:path"
     },
     {
-      "source": "/:path((?!otc/|cross-border/).+\\.md)",
+      "source": "/:path((?!otc/|payment/).+\\.md)",
       "destination": "/otc/:path"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/cross-border",
+      "destination": "/payment/",
+      "permanent": true
+    },
+    {
+      "source": "/cross-border/:path*",
+      "destination": "/payment/:path*",
+      "permanent": true
     }
   ]
 }
