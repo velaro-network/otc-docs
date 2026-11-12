@@ -41,8 +41,8 @@ https://staging-payment.velaro.network/api/v1/cross-border/partner/rates
    for a **firm quote**, valid until its `expires_at`.
 4. **Create the order.** [`POST /orders`](api/create-order.md) from the firm
    quote and the payee, with your markup, the payment reason and the
-   transaction document. The payer must be approved and the payee's bank
-   account registered.
+   transaction document. The payer must be approved; the payee's bank account
+   must be registered when the payer's payouts need it up front.
 5. **Payer pays by Pix.** The order moves to `awaiting_pix`; the creation
    answer carries the Pix payment details (`pix`) once they are available.
 6. **Velaro converts and pays out.** The order moves through `paid`,
@@ -62,7 +62,7 @@ and the first final status reported is final.
 | `awaiting_pix` | Waiting for the payer's Pix payment |
 | `paid` | Payment received; conversion and payout are being prepared |
 | `converted` | Funds have been sent on for payout to the payee |
-| `settled` | Paid out to the payee. Carries `uetr` (SWIFT tracking reference) when available. **Final** |
+| `settled` | Paid out to the payee. `uetr` (SWIFT tracking reference) is not provided yet: the field is reserved and currently left out. **Final** |
 | `failed` | The payment could not be completed and will be refunded to the payer. Always with `reason: "refund_pending"` |
 | `pix_expired` | The Pix payment deadline passed without payment; the order is closed. **Final**. Reported by the status endpoint only — no webhook is sent for it |
 

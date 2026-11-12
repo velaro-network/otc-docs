@@ -71,10 +71,10 @@ returns) moves to a new value.
 | `order_id` | string | Order id |
 | `status`   | string | `quoted`, `awaiting_pix`, `paid`, `converted`, `settled` or `failed` |
 | `reason`   | string | Only with `failed`: `refund_pending` |
-| `uetr`     | string | The payout's SWIFT tracking reference, once known — read it from the `settled` event (it may also appear on an earlier one) |
+| `uetr`     | string \| null | Reserved for the payout's SWIFT tracking reference. Not provided yet: currently left out of the event; treat it as optional (absent or `null`) |
 
 ```json
-{ "order_id": "order_9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d", "status": "settled", "uetr": "8a562c67-ca16-48ba-b074-65581be6f011" }
+{ "order_id": "order_9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d", "status": "settled" }
 ```
 
 - Sent once per **change**, forward only — the same rule as the status
