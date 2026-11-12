@@ -3,5 +3,22 @@
   "buildCommand": "retype build && retype build cross-border && cp landing/index.html .retype/index.html",
   "outputDirectory": ".retype",
   "installCommand": "npm install",
-  "trailingSlash": true
+  "trailingSlash": true,
+  "rewrites": [
+    {
+      "source": "/:path((?!otc/|cross-border/).+\\.md)",
+      "has": [
+        {
+          "type": "header",
+          "key": "referer",
+          "value": ".*/cross-border/.*"
+        }
+      ],
+      "destination": "/cross-border/:path"
+    },
+    {
+      "source": "/:path((?!otc/|cross-border/).+\\.md)",
+      "destination": "/otc/:path"
+    }
+  ]
 }
