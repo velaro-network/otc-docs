@@ -62,7 +62,7 @@ and the first final status reported is final.
 | `converted` | Funds have been sent on for payout to the payee |
 | `settled` | Paid out to the payee. `uetr` (SWIFT tracking reference) is not provided yet: the field is reserved and currently left out. **Final** |
 | `failed` | The payment could not be completed and will be refunded to the payer. Always with `reason: "refund_pending"` |
-| `pix_expired` | The Pix payment deadline passed without payment; the order is closed. **Final**. Reported by the status endpoint only — no webhook is sent for it |
+| `pix_expired` | The Pix payment deadline passed without payment; the order is closed. **Final**. An `order.status_changed` webhook is sent for it |
 | `cancelled` | The order was cancelled before payment — by you (see [Cancel an order](api/cancel-order.md)) or by Velaro operations. **Final** |
 | `refunded` | The payment was refunded to the payer and the refund has completed. **Final** |
 
