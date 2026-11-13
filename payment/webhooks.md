@@ -69,7 +69,7 @@ returns) moves to a new value.
 | Field      | Type   | Description |
 | ---------- | ------ | ----------- |
 | `order_id` | string | Order id |
-| `status`   | string | `quoted`, `awaiting_pix`, `paid`, `converted`, `settled`, `failed`, `cancelled` or `refunded` |
+| `status`   | string | `quoted`, `awaiting_pix`, `paid`, `converted`, `settled`, `failed`, `cancelled`, `pix_expired` or `refunded` |
 | `reason`   | string | Only with `failed`: `refund_pending` |
 | `uetr`     | string \| null | Reserved for the payout's SWIFT tracking reference. Not provided yet: currently left out of the event; treat it as optional (absent or `null`) |
 
@@ -79,8 +79,8 @@ returns) moves to a new value.
 
 - Sent once per **change**, forward only — the same rule as the status
   endpoint. A status you already polled is not pushed again.
-- `pix_expired` is **not** pushed: poll [Order status](api/order-status.md)
-  for an order still `awaiting_pix` after its `pix.expires_at`.
+- `pix_expired` **is** pushed: when the Pix payment deadline passes without
+  payment, the order is closed and one `pix_expired` event is sent.
 - `cancelled` **is** pushed: when an order is cancelled before payment, by you
   (see [Cancel an order](api/cancel-order.md)) or by Velaro operations.
 - `refunded` **is** pushed: when a refund completes, the `failed`
