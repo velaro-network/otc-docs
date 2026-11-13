@@ -63,14 +63,16 @@ and the first final status reported is final.
 | `settled` | Paid out to the payee. `uetr` (SWIFT tracking reference) is not provided yet: the field is reserved and currently left out. **Final** |
 | `failed` | The payment could not be completed and will be refunded to the payer. Always with `reason: "refund_pending"` |
 | `pix_expired` | The Pix payment deadline passed without payment; the order is closed. **Final**. Reported by the status endpoint only — no webhook is sent for it |
+| `cancelled` | The order was cancelled before payment — by you (see [Cancel an order](api/cancel-order.md)) or by Velaro operations. **Final** |
 
 Notes:
 
 - While Velaro handles an issue on an order internally, you keep seeing the
   status it had before.
 - After a refund completes, the order keeps reporting `failed`.
-- An order cancelled before payment (other than by Pix expiry) reports no new
-  status: it keeps the last status reported.
+- An order cancelled before payment reports `cancelled`, and an
+  `order.status_changed` webhook is sent for it. (An expired Pix is reported
+  as `pix_expired` instead.) See [Cancel an order](api/cancel-order.md).
 
 ## Retrying requests
 

@@ -17,8 +17,8 @@ Returns an order's current status. The same value is pushed by the
 authoritative source.
 
 The status only moves **forward**: a value once returned is never followed by
-an earlier one, and the first final status (`settled` or `pix_expired`) is
-final. See [Overview](../overview.md#order-statuses) for every status.
+an earlier one, and the first final status (`settled`, `pix_expired` or
+`cancelled`) is final. See [Overview](../overview.md#order-statuses) for every status.
 
 ## Path parameters
 
@@ -38,7 +38,7 @@ curl https://staging.payment.velaro.network/api/v1/orders/order_9a8b7c6d5e4f3a2b
 | Field      | Type   | Description |
 | ---------- | ------ | ----------- |
 | `order_id` | string | Order id |
-| `status`   | string | `quoted`, `awaiting_pix`, `paid`, `converted`, `settled`, `failed` or `pix_expired` |
+| `status`   | string | `quoted`, `awaiting_pix`, `paid`, `converted`, `settled`, `failed`, `pix_expired` or `cancelled` |
 | `reason`   | string | Only with `failed`: `refund_pending` (the payment will be refunded to the payer) |
 | `uetr`     | string \| null | Reserved for the SWIFT tracking reference (UETR) of the payout. Not provided yet: currently left out of the response; treat it as optional (absent or `null`) |
 
