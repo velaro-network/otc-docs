@@ -14,7 +14,13 @@ POST /api/v1/customers
 
 Creates a **payer** — the Brazilian business that pays — and submits its KYB
 documents for review. The same endpoint **resubmits** documents for an
-existing payer (send its `id`) after a `more_docs_needed` result.
+existing payer (send its `id`) after a `more_docs_needed` or `kyb_rejected`
+result.
+
+A rejected payer re-applies the same way: resubmit with its `id`. It returns
+to `kyb_pending` for a new review, and its earlier documents and review history
+are kept. Creating a new payer with the same CNPJ returns `409 conflict`
+instead.
 
 Follow the review with [Customer status](customer-status.md) or the
 `payer.review_result` [webhook](../webhooks.md). Orders can only be created
@@ -109,7 +115,7 @@ Returned for a new payer and for a resubmission.
 | `400` | `bad_request` | Body is not JSON, `Content-Type` is not `application/json`, or a field has the wrong JSON type |
 | `400` | `invalid_request` | A field fails its rule: `legal_name`/`cnpj` missing, invalid CNPJ, no documents, more than 40 documents, unknown category, missing or too-long filename, a document over 10 MB or not PDF/JPEG/PNG, invalid base64, submission over 80 MiB, `profile` not an object or over 64 KiB, a field over its size limit, a NUL character, or more than 1,000 documents for the payer |
 | `404` | `not_found` | Resubmission: `id` unknown or created with another key |
-| `409` | `conflict` | A payer with this CNPJ already exists; or a resubmission that is not accepted (payer not in `more_docs_needed`, or rejected); or a concurrent update — retry |
+| `409` | `conflict` | A payer with this CNPJ already exists; or a resubmission that is not accepted (payer not in `more_docs_needed` or `kyb_rejected`); or a concurrent update — retry |
 | `413` | `payload_too_large` | Body over 120,000,000 bytes |
 | `503` | `service_busy` | Too many uploads in progress — retry after the `Retry-After` interval (see [Limits](../limits.md#kyb-uploads-in-progress)) |
 | `500` | `create_customer_failed` | Unexpected failure |

@@ -42,7 +42,7 @@ curl https://staging.payment.velaro.network/api/v1/customers/payer_8b1e4f2a9c3d4
 | `kyb_pending` | Under review |
 | `approved` | Approved — orders can be created for this payer |
 | `more_docs_needed` | Documents are needed: resubmit with [Create a customer](create-customer.md#resubmission) |
-| `kyb_rejected` | Rejected; `note` may give the reason |
+| `kyb_rejected` | Rejected; `note` may give the reason. To re-apply, resubmit with [Create a customer](create-customer.md#resubmission) |
 
 ```json
 {
