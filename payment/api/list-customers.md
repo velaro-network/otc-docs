@@ -30,6 +30,10 @@ Results are ordered newest first. When `next_cursor` is not `null`, pass it
 back as `cursor` (with the same filters) to get the next page. Treat the
 cursor as an opaque token: do not build or change it.
 
+A page can hold fewer items than `limit`, or none at all, while more results
+remain — this happens when filtering by `status`. Only `next_cursor: null`
+means you have reached the end; keep paging until then.
+
 ## Example
 
 ```bash
