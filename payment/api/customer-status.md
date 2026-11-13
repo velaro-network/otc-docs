@@ -8,7 +8,7 @@ order: 47
 
 :::code-tab GET
 ```
-GET /api/v1/cross-border/partner/customers/{id}/status
+GET /api/v1/customers/{id}/status
 ```
 :::
 
@@ -24,7 +24,7 @@ Returns a payer's KYB review status. The same information is pushed by the
 ## Example
 
 ```bash
-curl https://staging-payment.velaro.network/api/v1/cross-border/partner/customers/payer_8b1e4f2a9c3d4e5f6a7b8c9d0e1f2a3b/status \
+curl https://staging.payment.velaro.network/api/v1/customers/payer_8b1e4f2a9c3d4e5f6a7b8c9d0e1f2a3b/status \
   -H "X-API-Key: vcb_your_key"
 ```
 

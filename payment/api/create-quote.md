@@ -8,7 +8,7 @@ order: 44
 
 :::code-tab POST
 ```
-POST /api/v1/cross-border/partner/quotes
+POST /api/v1/quotes
 ```
 :::
 
@@ -33,7 +33,7 @@ The answer is Velaro's own price only — add your markup on top.
 ## Example
 
 ```bash
-curl -X POST https://staging-payment.velaro.network/api/v1/cross-border/partner/quotes \
+curl -X POST https://staging.payment.velaro.network/api/v1/quotes \
   -H "X-API-Key: vcb_your_key" \
   -H "Content-Type: application/json" \
   -d '{"payout_amount":"1000","payout_currency":"USD"}'
