@@ -69,7 +69,7 @@ returns) moves to a new value.
 | Field      | Type   | Description |
 | ---------- | ------ | ----------- |
 | `order_id` | string | Order id |
-| `status`   | string | `quoted`, `awaiting_pix`, `paid`, `converted`, `settled`, `failed` or `cancelled` |
+| `status`   | string | `quoted`, `awaiting_pix`, `paid`, `converted`, `settled`, `failed`, `cancelled` or `refunded` |
 | `reason`   | string | Only with `failed`: `refund_pending` |
 | `uetr`     | string \| null | Reserved for the payout's SWIFT tracking reference. Not provided yet: currently left out of the event; treat it as optional (absent or `null`) |
 
@@ -83,6 +83,12 @@ returns) moves to a new value.
   for an order still `awaiting_pix` after its `pix.expires_at`.
 - `cancelled` **is** pushed: when an order is cancelled before payment, by you
   (see [Cancel an order](api/cancel-order.md)) or by Velaro operations.
+- `refunded` **is** pushed: when a refund completes, the `failed`
+  (`refund_pending`) status is followed by one `refunded` event.
+
+```json
+{ "order_id": "order_9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d", "status": "refunded" }
+```
 - An order created as `quoted` is usually not pushed until it moves on; you
   already have `quoted` from the creation answer.
 
