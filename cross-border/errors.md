@@ -80,6 +80,7 @@ documented on the endpoint that returns them.
 | | `404` | `not_found` (resubmission) |
 | | `409` | `conflict` |
 | | `413` | `payload_too_large` |
+| | `422` | `file_unconvertible` |
 | | `503` | `service_busy` |
 | | `500` | `create_customer_failed` |
 | [`GET /customers/{id}/status`](api/customer-status.md) | `404` | `not_found` |
@@ -94,7 +95,7 @@ documented on the endpoint that returns them.
 | | `409` | `quote_already_used` |
 | | `410` | `quote_expired` |
 | | `413` | `payload_too_large` |
-| | `422` | `payer_not_approved`, `payee_not_registered`, `payout_provider_not_supported`, `unsupported_payout_currency`, `payer_limit_exceeded`, `transaction_document_rejected`, `order_not_accepted` |
+| | `422` | `payer_not_approved`, `payee_not_registered`, `payout_provider_not_supported`, `unsupported_payout_currency`, `payer_limit_exceeded`, `transaction_document_rejected`, `file_unconvertible`, `order_not_accepted` |
 | | `503` | `otc_unavailable` |
 | | `500` | `order_lookup_failed`, `quote_lookup_failed`, `payee_lookup_failed`, `payer_lookup_failed`, `create_order_failed` |
 | [`GET /orders/{id}/status`](api/order-status.md) | `404` | `not_found`, `no_status` |

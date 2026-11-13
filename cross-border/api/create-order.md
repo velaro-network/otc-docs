@@ -148,6 +148,7 @@ readiness, body fields and document format, payer limits, document upload, payme
 | `422` | `unsupported_payout_currency` | The quote's payout currency cannot be paid out for this payer |
 | `422` | `payer_limit_exceeded` | Over the payer's per-order or monthly limit. Same extra members as on [Create a firm quote](create-quote.md#payer_limit_exceeded) |
 | `422` | `transaction_document_rejected` | The transaction document was refused. Carries `sphere_status` (number, the HTTP status of the refusal) and `sphere_reason` (string, the reason given, may be empty). Fix the document and send the request again |
+| `422` | `file_unconvertible` | The transaction document is a supported type (PDF, JPEG or PNG) but could not be re-rendered under the 10,000,000-byte limit the payout provider accepts: it is too large or too high-resolution to compress that far, or a PDF has too many pages. Send a smaller or lower-resolution file (or split a long PDF) |
 | `422` | `order_not_accepted` | The order could not be accepted at this time |
 | `503` | `otc_unavailable` | The Pix payment could not be set up — temporary. Nothing was created; send the same request again |
 | `500` | `order_lookup_failed`, `quote_lookup_failed`, `payee_lookup_failed`, `payer_lookup_failed`, `create_order_failed` | Unexpected failure |

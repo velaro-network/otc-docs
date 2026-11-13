@@ -111,6 +111,7 @@ Returned for a new payer and for a resubmission.
 | `404` | `not_found` | Resubmission: `id` unknown or created with another key |
 | `409` | `conflict` | A payer with this CNPJ already exists; or a resubmission that is not accepted (payer not in `more_docs_needed`, or rejected); or a concurrent update — retry |
 | `413` | `payload_too_large` | Body over 120,000,000 bytes |
+| `422` | `file_unconvertible` | A document is a supported type (PDF, JPEG or PNG) but could not be re-rendered under the 10,000,000-byte limit the payout provider accepts: it is too large or too high-resolution to compress that far, or a PDF has too many pages. Send a smaller or lower-resolution file (or split a long PDF) |
 | `503` | `service_busy` | Too many uploads in progress — retry after the `Retry-After` interval (see [Limits](../limits.md#kyb-uploads-in-progress)) |
 | `500` | `create_customer_failed` | Unexpected failure |
 
